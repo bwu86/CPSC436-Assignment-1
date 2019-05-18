@@ -1,11 +1,12 @@
 //Initial array with welcome messages
-var messageArr=["Welcome to Ben's message board!", "Try entering your own message above, and click submit."];
-var imgArr=[];
+
+messageObj = {"messages":["Welcome to Ben's message board!", "Try entering your own message above, and click submit."], "images":[]};
+
 //Adds message to the array and updates the 'ul', used on-click
 function addMessage(){
     if(document.getElementById("message-box").value.length > 0){
         let input = document.getElementById("message-box").value;
-        messageArr.push(input);
+        messageObj.messages.push(input);
         updateList();
         clearBox();
     }
@@ -19,8 +20,8 @@ function addImage(){
 
 //Pops the last message from the 'ul'
 function removeLastMessage(){
-    if (messageArr.length > 0){
-        messageArr.splice(-1, 1);
+    if (messageObj.messages.length > 0){
+        messageObj.messages.splice(-1, 1);
         updateList();
     }
 }
@@ -35,12 +36,12 @@ function displayMessages()
 {
     var list = document.createElement('ul');
 
-    for (var i = 0; i < messageArr.length; i++){
+    for (var i = 0; i < messageObj.messages.length; i++){
         //Creates list item
         var item = document.createElement('li');
 
         //Set contents
-        item.appendChild(document.createTextNode(messageArr[i]));
+        item.appendChild(document.createTextNode(messageObj.messages[i]));
 
         //Add contents to the list
         list.appendChild(item);
