@@ -1,5 +1,6 @@
+//Initial array with welcome messages
 var messageArr=["Welcome to Ben's message board!", "Try entering your own message above, and click submit."];
-
+var imgArr=[];
 //Adds message to the array and updates the 'ul', used on-click
 function addMessage(){
     if(document.getElementById("message-box").value.length > 0){
@@ -10,10 +11,18 @@ function addMessage(){
     }
 }
 
+//Still need to finish this
+function addImage(){
+    var fileinput = document.getElementById("photo");
+    var filename = fileinput.value;
+}
+
 //Pops the last message from the 'ul'
 function removeLastMessage(){
-    messageArr.pop;
-    updateList();
+    if (messageArr.length > 0){
+        messageArr.splice(-1, 1);
+        updateList();
+    }
 }
 
 //Clears the message box after click
