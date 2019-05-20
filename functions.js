@@ -14,11 +14,11 @@ function addMessage(){
 
 //Still need to finish this
 function changeImage(event) {
-    let image = new Image(300, 300);
+    let image = new Image();
     let linebreak = document.createElement("br");
     image.src = URL.createObjectURL(event.target.files[0])
-    document.getElementById("images_div").appendChild(image);
-    document.getElementById("images_div").appendChild(linebreak);
+    document.getElementById("images").appendChild(image);
+    document.getElementById("images").appendChild(linebreak);
 }
 
 
@@ -29,7 +29,7 @@ function removeLastMessage(){
 }
 
 function removeLastImage(){
-    var lastImage = document.getElementById("images_div");
+    var lastImage = document.getElementById("images");
     lastImage.removeChild(lastImage.lastChild);
     lastImage.removeChild(lastImage.lastChild);
 }
@@ -77,7 +77,21 @@ function updateImg(){
     // .appendChild(displayImages());
 }
 
+function submitOnEnter(event){
+    if(event.which === 13){
+        event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+        addMessage();
+    }
+}
+
+function removeAllMessages(){
+    document.getElementById('the_msgs').innerHTML=''
+}
+
+function removeAllImages(){
+    document.getElementById("images").innerHTML="";
+}
+
 //Sets the welcome message
 window.onload = displayMessages;
-document.getElementById("images_div").appendChild(displayImages());
 
