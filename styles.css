@@ -140,6 +140,15 @@ ul{
     border-radius: 5px;
 }
 
+ul li{
+    position: relative;
+    padding: 6px;
+    align-items: center;
+    font-weight: 900;
+    color: #ffffff;
+
+}
+
 p{
     justify-content: center;
     text-align: center;
