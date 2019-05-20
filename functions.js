@@ -1,33 +1,37 @@
 //Initial array with welcome messages
-
 messageObj = {"messages":["Welcome to Ben's message board!", "Try entering your own message above, and click submit."], "images":[]};
-messageObj.images[0] = new Image(300, 300);
-messageObj.images[0].src = 'lorenzo_img.jpg';
 
 //Adds message to the array and updates the 'ul', used on-click
-function addMessage(){
-    if(document.getElementById("message-box").value.length > 0){
-        let input = document.getElementById("message-box");
-        messageObj.messages.push(input);
-        updateList();
+function addMessage(){       
+     let input = document.getElementById("message-box").value;
+    if(input){
+        let newItem = document.createElement('li');
+        newItem.innerHTML = input;
+        document.getElementById('the_msgs').appendChild(newItem);
         clearBox();
     }
 }
 
 //Still need to finish this
-function addImage(){
-        let image = document.getElementById('photo').value;
-        messageObj.images.push(image);
-        updateImg();
+function changeImage(event) {
+    let image = new Image(300, 300);
+    let linebreak = document.createElement("br");
+    image.src = URL.createObjectURL(event.target.files[0])
+    document.getElementById("images_div").appendChild(image);
+    document.getElementById("images_div").appendChild(linebreak);
 }
 
 
-//Pops the last message from the 'ul'
+//Pops the last message from the message list
 function removeLastMessage(){
-    if (messageObj.messages.length > 0){
-        messageObj.messages.splice(-1, 1);
-        updateList();
-    }
+    var lastMsg = document.getElementById("the_msgs");
+    lastMsg.removeChild(lastMsg.lastChild);
+}
+
+function removeLastImage(){
+    var lastImage = document.getElementById("images_div");
+    lastImage.removeChild(lastImage.lastChild);
+    lastImage.removeChild(lastImage.lastChild);
 }
 
 //Clears the message box after click
@@ -37,19 +41,17 @@ function clearBox(){
 
 //Cretes a 'ul' element and loads items from the array into it
 function displayMessages(){
-    var list = document.createElement('ul');
 
     for (let i = 0; i < messageObj.messages.length; i++){
         //Creates list item
-        var item = document.createElement('li');
+        let item = document.createElement('li');
 
         //Set contents
-        item.appendChild(document.createTextNode(messageObj.messages[i]));
+        item.innerHTML = messageObj.messages[i];
 
         //Add contents to the list
-        list.appendChild(item);
+        document.getElementById('the_msgs').appendChild(item);
     }
-    return list;
 }
 
 function displayImages(){
@@ -58,28 +60,24 @@ function displayImages(){
     for (let i = 0; i < messageObj.images.length; i++){
         //Creates list item
         var item = document.createElement('li');
+        var image = document.createElement('img');
+        image.src = messageObj.images[i];
 
         //Set contents
-        item.appendChild(messageObj.images[i]);
+        item.appendChild(img);
         //Add contents to the list
         list.appendChild(item);
     }
     return list;
 }
 
-
-//Updates the current working list
-function updateList(){
-    document.getElementById('messages').innerHTML = "";
-    document.getElementById('messages').appendChild(displayMessages());
-}
-
 function updateImg(){
-    document.getElementById('photo').innerHTML = "";
-    document.getElementById('images').appendChild(displayImages());
+    document.getElementById('images_div').innerHTML = "";
+    document.getElementById('images_div').appendChild(printImgSrc());
+    // .appendChild(displayImages());
 }
 
 //Sets the welcome message
-document.getElementById('messages').appendChild(displayMessages());
-document.getElementById('images').appendChild(displayImages());
+window.onload = displayMessages;
+document.getElementById("images_div").appendChild(displayImages());
 
