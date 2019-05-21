@@ -85,7 +85,7 @@ function submitOnEnter(event){
 }
 
 function removeAllMessages(){
-    document.getElementById('the_msgs').innerHTML=''
+    document.getElementById('the_msgs').innerHTML='';
 }
 
 function removeAllImages(){
