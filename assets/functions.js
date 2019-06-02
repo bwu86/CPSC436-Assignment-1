@@ -1,5 +1,5 @@
 //Initial array with welcome messages
-messageObj = {"messages":["Welcome to Ben's message board!", "Try entering your own message above, and click submit."], "images":[]};
+messageObj = {"messages":["Welcome to Noter!", "Try entering your own message above, and click submit."], "images":[]};
 
 //Adds message to the array and updates the 'ul', used on-click
 function addMessage(){       
